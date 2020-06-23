@@ -46,7 +46,11 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 0x105c0000
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 0x105c0000
 BOARD_FLASH_BLOCK_SIZE := 131072
 
-TARGET_PREBUILT_KERNEL := device/samsung/l900/kernAl
+# Kernel Configs
+#TARGET_PREBUILT_KERNEL := device/samsung/t0ltetmo/kernAl
+TARGET_KERNEL_SOURCE := kernel/samsung/smdk4412-f2fs
+TARGET_KERNEL_CONFIG := custom_t0ltecdma_defconfig
+#TARGET_PREBUILT_KERNEL := device/samsung/l900/kernAl
 
 # Recovery:Start
 
@@ -56,6 +60,36 @@ BOARD_HAS_LARGE_FILESYSTEM := true
 # Recovery: set depending on recovery being built for. (CWM or TWRP)
 #           both init scripts can be found in the recovery folder
 #TARGET_RECOVERY_INITRC := device/samsung/l900/recovery/init.rc
+
+#BOARD_SEPOLICY_UNION += \
+    file_contexts \
+    te_macros \
+    device.te \
+    dhcp.te \
+    domain.te \
+    file.te \
+    init.te \
+    kickstart.te \
+    mediaserver.te \
+    netd.te \
+    netmgrd.te \
+    nfc.te \
+    qmiproxy.te \
+    qmuxd.te \
+    rild.te \
+    secril.te \
+    servicemanager.te \
+    sysinit.te \
+    system.te \
+    system_app.te \
+    system_server.te \
+    time_daemon.te \
+    ueventd.te \
+    vold.te \
+    wpa.te \
+    wpa_supplicant.te \
+    zygote.te
+
 
 # TWRP specific build flags
 BOARD_USE_CUSTOM_RECOVERY_FONT:= \"roboto_15x24.h\"
@@ -69,26 +103,12 @@ BOARD_HAS_NO_REAL_SDCARD := true
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 TW_NO_USB_STORAGE := true
 TWRP_EVENT_LOGGING := false
-SP1_NAME := "efs"
-SP1_BACKUP_METHOD := files
-SP1_MOUNTABLE := 1
-SP2_NAME := "modem"
-SP2_BACKUP_METHOD := image
-SP2_MOUNTABLE := 0
 #TARGET_USE_CUSTOM_LUN_FILE_PATH := /sys/devices/virtual/android_usb/android0/f_mass_storage/lun0/file
-TW_INCLUDE_JB_CRYPTO := true
-#TW_INCLUDE_CRYPTO_SAMSUNG := true
-TW_CRYPTO_FS_TYPE := "ext4"
-TW_CRYPTO_REAL_BLKDEV := "/dev/block/mmcblk0p16"
-TW_CRYPTO_MNT_POINT := "/data"
-TW_CRYPTO_FS_OPTIONS := "noatime,nosuid,nodev,discard,noauto_da_alloc,journal_async_commit,errors=panic wait,check,encryptable=footer"
-TW_CRYPTO_FS_FLAGS := "0x00000406"
-TW_CRYPTO_KEY_LOC := "footer"
+#TW_INCLUDE_CRYPTO := true
 TW_BRIGHTNESS_PATH := "/brightness"
 #TW_BRIGHTNESS_PATH := "/sys/devices/platform/s5p-dsim.0/s6evr02/backlight/panel/brightness"
 TW_MAX_BRIGHTNESS := 255
 TARGET_USERIMAGES_USE_EXT4 := true
 TARGET_USERIMAGES_USE_F2FS := true
-TW_INCLUDE_FB2PNG := true
 TW_NO_EXFAT_FUSE := true
 TW_NO_EXFAT := true
