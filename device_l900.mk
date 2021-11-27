@@ -26,7 +26,7 @@ PRODUCT_COPY_FILES += \
 	#$(LOCAL_PATH)/file_contexts:recovery/root/prebuilt_file_contexts \
 
 
-$(call inherit-product, build/target/product/full.mk)
+$(call inherit-product, build/target/product/embedded.mk)
 
 PRODUCT_NAME := omni_l900
 PRODUCT_BRAND := Samsung
